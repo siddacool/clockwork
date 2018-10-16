@@ -9,9 +9,20 @@ svg{
   stroke-width: 3px;
 }
 
+.inner-dial {
+  stroke: #dfdfdf;
+  stroke-width: 1;
+  fill: #f4f4f4;
+}
+
+.outer-dial {
+  stroke: #376aff;
+  stroke-width: 60;
+  fill: none;
+}
+
 .second-hand{
   stroke-width: 2;
-
 }
 
 .minute-hand{
@@ -48,6 +59,26 @@ svg{
 
 .hour24-label {
   font-size: 10px;
+}
+
+.hour-alt-tick {
+  stroke-width: 3;
+}
+
+.second-alt-tick {
+  stroke: #fff;
+}
+
+.hour-alt-label {
+  fill: #fff;
+  font-size: 14px;
+  stroke: none;
+}
+
+.minute-alt-label {
+  fill: #fff;
+  font-size: 10px;
+  stroke: none;
 }
 
 .clock {
