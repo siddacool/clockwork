@@ -1,6 +1,5 @@
 import { range } from 'd3';
 import scales from './scales';
-import radians from './radians';
 
 export default function (props) {
   const {
@@ -13,6 +12,7 @@ export default function (props) {
     offset,
   } = props;
 
+  const radians = 0.0174532925;
   const thisScale = scales[scaleName];
 
   return base
@@ -22,7 +22,7 @@ export default function (props) {
     .append('text')
     .attr('class', className)
     .attr('text-anchor', 'middle')
-    .attr('x', d => (radius * Math.sin(thisScale(d + slantPoints) * radians)))
-    .attr('y', d => (-radius * Math.cos(thisScale(d + slantPoints) * radians) + offset))
+    .attr('x', d => (radius * Math.sin(thisScale(d - slantPoints) * radians)))
+    .attr('y', d => (-radius * Math.cos(thisScale(d - slantPoints) * radians) + offset))
     .text(d => d);
 }

@@ -1,16 +1,17 @@
 import { Component } from 'domr-framework';
-import * as d3 from 'd3';
+import { select } from 'd3';
 import BaseClock from './BaseClock';
 import AltClock from './AltClock';
+import calculateTimezoneGap from '../utils/calculate-timezone-gap';
 
 export default class extends Component {
-  constructor() {
+  constructor(props = {}) {
     super();
-    this.wrapperWidth = document.querySelector('body').clientWidth;
+    this.props = props;
     this.maxWidth = 500;
-    this.clockRadius = 70;
+    this.clockRadius = 60;
     this.margin = 50;
-    this.dimentions = d3.min([this.wrapperWidth, this.maxWidth]);
+    this.dimentions = (this.clockRadius + this.margin) * 3;
     this.hourHandLength = 2 * this.clockRadius / 3;
     this.minuteHandLength = this.clockRadius;
     this.secondHandLength = this.clockRadius - 12;
@@ -52,7 +53,10 @@ export default class extends Component {
       hourTickLength,
     } = this.state;
 
-    const svg = d3.select(`#${id}`)
+    const { timezoneBase, timezoneAlt } = this.props;
+    const diffTimezone = calculateTimezoneGap(timezoneBase, timezoneAlt);
+
+    const svg = select(`#${id}`)
       .append('svg')
       .attr('width', width)
       .attr('height', height);
@@ -66,11 +70,13 @@ export default class extends Component {
       base: face,
       secondTickLength,
       hourTickLength,
+      timezone: timezoneBase,
     });
 
     const altClock = AltClock({
       clockRadius,
       base: face,
+      diff: diffTimezone,
     });
   }
 }

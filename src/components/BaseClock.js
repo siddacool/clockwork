@@ -1,6 +1,6 @@
 import Dial from './Dial';
-import TicksRing from './TicksRing';
-import LabelsRing from './LabelsRing';
+import Ticks from './Ticks';
+import Labels from './Labels';
 import HandsCover from './HandsCover';
 import Hands from './Hands';
 import scales from './scales';
@@ -13,10 +13,10 @@ export default function (props) {
     base,
     secondTickLength,
     hourTickLength,
+    timezone = '+05:30',
   } = props;
   const secondTickStart = clockRadius;
   const hourTickStart = clockRadius;
-  const timezone = '+05:30';
 
   const baseClock = base
     .append('g')
@@ -29,7 +29,7 @@ export default function (props) {
     className: 'inner-dial',
   });
 
-  const secondTick = TicksRing({
+  const secondTick = Ticks({
     base: baseClock,
     y1: secondTickStart,
     y2: secondTickStart + secondTickLength,
@@ -40,7 +40,7 @@ export default function (props) {
   secondTick
     .attr('transform', d => `rotate(${secondScale(d)})`);
 
-  const hourTick = TicksRing({
+  const hourTick = Ticks({
     base: baseClock,
     y1: hourTickStart,
     y2: hourTickStart + hourTickLength,
@@ -63,7 +63,7 @@ export default function (props) {
     })
     .attr('transform', d => `rotate(${hourScale(d)})`);
 
-  const hourLabel = LabelsRing({
+  const hourLabel = Labels({
     base: baseClock,
     rangeArr: [1, 13, 1],
     className: 'hour-label',
@@ -72,13 +72,13 @@ export default function (props) {
     offset: 4,
   });
 
-  const hour24Label = LabelsRing({
+  const hour24Label = Labels({
     base: baseClock,
     rangeArr: [13, 25],
     className: 'hour24-label',
     scaleName: 'hourScale',
-    radius: clockRadius - 30,
-    offset: 5,
+    radius: clockRadius - 24,
+    offset: 3,
   });
 
   const hands = Hands({

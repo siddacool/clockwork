@@ -1,11 +1,11 @@
-import Clock from '../components/Clock';
+import Frame from '../components/Frame';
 
 export default function () {
-  const clock = new Clock();
+  const frame = new Frame();
 
   return `
     <div class="clock-container">
-      ${clock.Render()}
+      ${frame.Render()}
     </div>
   `;
 }
