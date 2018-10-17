@@ -22,7 +22,7 @@ export default function (props) {
     .append('text')
     .attr('class', className)
     .attr('text-anchor', 'middle')
-    .attr('x', d => (radius * Math.sin(thisScale(d - slantPoints) * radians)))
-    .attr('y', d => (-radius * Math.cos(thisScale(d - slantPoints) * radians) + offset))
+    .attr('x', d => (radius * Math.sin(thisScale(d + slantPoints) * radians)))
+    .attr('y', d => (-radius * Math.cos(thisScale(d + slantPoints) * radians) + offset))
     .text(d => d);
 }

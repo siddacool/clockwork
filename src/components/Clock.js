@@ -54,8 +54,6 @@ export default class extends Component {
     } = this.state;
 
     const { timezoneBase, timezoneAlt } = this.props;
-    const diffTimezone = calculateTimezoneGap(timezoneBase, timezoneAlt);
-
     const svg = select(`#${id}`)
       .append('svg')
       .attr('width', width)
@@ -73,10 +71,16 @@ export default class extends Component {
       timezone: timezoneBase,
     });
 
-    const altClock = AltClock({
-      clockRadius,
-      base: face,
-      diff: diffTimezone,
-    });
+    if (timezoneAlt) {
+      const diffTimezone = calculateTimezoneGap(timezoneBase, timezoneAlt);
+
+      console.log(diffTimezone);
+
+      const altClock = AltClock({
+        clockRadius,
+        base: face,
+        diff: diffTimezone,
+      });
+    }
   }
 }

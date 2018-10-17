@@ -44,7 +44,7 @@ export default function (props) {
   });
 
   secondTick
-    .attr('transform', d => `rotate(${secondScale(d + diff.m)})`);
+    .attr('transform', d => `rotate(${secondScale(d - diff.m)})`);
 
   hourTick
     .attr('stroke', (d) => {
@@ -75,6 +75,6 @@ export default function (props) {
     scaleName: 'hourScale',
     radius: clockRadius + 40,
     offset: 6,
-    slantPoints: -(diff.h),
+    slantPoints: diff.h,
   });
 }

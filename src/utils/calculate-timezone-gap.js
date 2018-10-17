@@ -2,23 +2,25 @@ import getTime from './get-time';
 
 function convertMinsToHrsMins(min) {
   const realMin = min;
-  const isPositive = realMin >= 0;
   const mins = Math.abs(realMin);
-  let h = Math.floor(mins / 60);
+  const h = Math.floor(mins / 60);
   const m = mins % 60;
-  h = isPositive ? h : JSON.parse(`-${h}`);
 
   return {
-    h,
+    h: realMin < 0 ? (h * (-1)) : (h + 1),
     m,
   };
 }
 
 function calculateTimezoneGap(timezoneBase, timezoneAlt) {
-  const t1 = getTime(timezoneBase);
-  const t2 = getTime(timezoneAlt);
-  const diff = t1.utcOffset() - t2.utcOffset();
+  let t1 = getTime(timezoneBase);
+  let t2 = getTime(timezoneAlt);
+  t1 = t1.utcOffset();
+  t2 = t2.utcOffset();
+  const diff = t1 - t2;
   const diffObj = convertMinsToHrsMins(diff);
+
+  console.log(diffObj);
 
   return diffObj;
 }
