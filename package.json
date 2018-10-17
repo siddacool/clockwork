@@ -50,6 +50,7 @@
     "dexie": "^2.0.4",
     "domr-framework": "0.0.3",
     "moment": "^2.22.2",
-    "purple-maps-api": "0.0.9"
+    "purple-maps-api": "0.0.9",
+    "sortablejs": "^1.7.0"
   }
 }

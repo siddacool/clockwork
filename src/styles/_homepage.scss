@@ -92,22 +92,24 @@ svg{
 }
 
 .city {
+  background-color: #fff;
   border-bottom: 1px solid #bcbcbc;
-  display: block;
-  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 
-  &:nth-child(2) {
+  &:nth-child(1) {
     background-color: #f4f4f4;
     border-bottom: 3px solid #bcbcbc;
   }
 
-  &:nth-child(3) {
+  &:nth-child(2) {
     background-color: #cedaff;
     border-bottom: 3px solid #376aff;
   }
 
   span {
-    padding-left: 30px;
+    padding-left: 20px;
   }
 }
 
