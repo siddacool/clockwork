@@ -9,9 +9,20 @@ svg{
   stroke-width: 3px;
 }
 
+.inner-dial {
+  stroke: #dfdfdf;
+  stroke-width: 1;
+  fill: #f4f4f4;
+}
+
+.outer-dial {
+  stroke: #376aff;
+  stroke-width: 60;
+  fill: none;
+}
+
 .second-hand{
   stroke-width: 2;
-
 }
 
 .minute-hand{
@@ -50,7 +61,63 @@ svg{
   font-size: 10px;
 }
 
+.hour-alt-tick {
+  stroke-width: 3;
+}
+
+.second-alt-tick {
+  stroke: #fff;
+}
+
+.hour-alt-label {
+  fill: #fff;
+  font-size: 14px;
+  stroke: none;
+}
+
+.minute-alt-label {
+  fill: #fff;
+  font-size: 10px;
+  stroke: none;
+}
+
 .clock {
   display: flex;
   justify-content: center;
+}
+
+.cities {
+  height: calc(100vh - 330px);
+  overflow: auto;
+}
+
+.city {
+  border-bottom: 1px solid #bcbcbc;
+  display: block;
+  padding: 10px 0;
+
+  &:nth-child(2) {
+    background-color: #f4f4f4;
+    border-bottom: 3px solid #bcbcbc;
+  }
+
+  &:nth-child(3) {
+    background-color: #cedaff;
+    border-bottom: 3px solid #376aff;
+  }
+
+  span {
+    padding-left: 30px;
+  }
+}
+
+.add-btn {
+  background-color: #376aff;
+  color: #fff;
+  border-radius: 4px;
+  display: block;
+  max-width: 200px;
+  padding: 8px;
+  margin: 10px auto;
+  text-align: center;
 }

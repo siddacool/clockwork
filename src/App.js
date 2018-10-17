@@ -1,5 +1,6 @@
 import { Router } from 'domr-framework';
 import Home from './views/Home';
+import SearchAndAdd from './views/SearchAndAdd';
 
 const routes = [
   {
@@ -7,6 +8,11 @@ const routes = [
     view: Home,
     title: 'homepage',
     isDefault: true,
+  },
+  {
+    path: '/add',
+    view: SearchAndAdd,
+    title: 'Search And Add',
   },
 ];
 

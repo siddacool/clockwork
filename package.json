@@ -47,7 +47,9 @@
   },
   "dependencies": {
     "d3": "^5.7.0",
+    "dexie": "^2.0.4",
     "domr-framework": "0.0.3",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "purple-maps-api": "0.0.9"
   }
 }
