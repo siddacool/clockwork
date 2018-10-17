@@ -66,9 +66,23 @@ function clearCityData() {
   return promiseObj;
 }
 
+function saveBulkCityData(drops) {
+  const promiseObj = new Promise((resolve, reject) => {
+    db.cities.bulkPut(drops)
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err.stack || err);
+      });
+  });
+  return promiseObj;
+}
+
 export {
   saveCityData,
   getCityDataAll,
   removeCityData,
   clearCityData,
+  saveBulkCityData,
 };

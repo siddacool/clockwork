@@ -14,6 +14,7 @@ export default function (props) {
         data-country-name="${countryName}"
         data-timezone="${timezone}">
           <span>${name}, ${countryName}</span>
+          <a href="#" class="delete"> X </a>
     </li>
   `;
 }

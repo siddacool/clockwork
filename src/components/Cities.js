@@ -1,5 +1,8 @@
+import * as Sortable from 'sortablejs';
 import { Component } from 'domr-framework';
 import City from './City';
+import Clock from './Clock';
+import { saveCityData, getCityDataAll, removeCityData, clearCityData } from '../utils/db-manipulation';
 
 export default class extends Component {
   constructor(props) {
@@ -20,9 +23,38 @@ export default class extends Component {
 
     thisSelf.innerHTML = `
       <a href="#/add" class="add-btn">Add</a>
-      ${citiesArr.map(c => City(c)).join('')}
+      <ul>
+        ${citiesArr.map(c => City(c)).join('')}
+      </ul>
     `;
 
-    console.log(citiesArr);
+    const el = thisSelf.querySelector('ul');
+    el.addEventListener('click', (event) => {
+      if (event.target && event.target.matches('.delete')) {
+        event.preventDefault();
+        const parent = event.target.parentElement;
+        const grandParent = parent.parentElement;
+
+        removeCityData(parent.getAttribute('data-city-id'))
+          .then(() => {
+            grandParent.removeChild(parent);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
+
+    const sortable = Sortable.create(el, {
+      onUpdate: () => {
+        clearCityData()
+          .then(() => {
+            
+          })
+          .catch((clrerr) => {
+            console.log(clrerr);
+          });
+      },
+    });
   }
 }
