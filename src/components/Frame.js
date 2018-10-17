@@ -1,6 +1,7 @@
 import { Component } from 'domr-framework';
-import Clock from './Clock';
 import { getCityDataAll } from '../utils/db-manipulation';
+import Clock from './Clock';
+import Cities from './Cities';
 
 export default class extends Component {
   constructor() {
@@ -34,9 +35,15 @@ export default class extends Component {
         const clock = new Clock({ timezoneBase, timezoneAlt });
         clock
           .AddTo(frame);
+
+        const cities = new Cities({ citiesArr: data });
+
+        cities
+          .AddTo(frame);
       })
       .catch((err) => {
         console.log(err);
+        location.href = '#/add';
       });
   }
 }

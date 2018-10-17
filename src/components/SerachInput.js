@@ -26,8 +26,9 @@ export default class extends Component {
           fireSearchEvent(val)
             .then((result) => {
               const thisResult = result;
+              const searchTerm = val;
               ul.innerHTML = `
-                 ${thisResult.map(r => SearchResult(r)).join('')}
+                 ${thisResult.map(r => SearchResult({ searchTerm, ...r })).join('')}
               `;
             })
             .catch((err) => {

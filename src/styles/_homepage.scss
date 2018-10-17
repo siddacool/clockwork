@@ -85,3 +85,39 @@ svg{
   display: flex;
   justify-content: center;
 }
+
+.cities {
+  height: calc(100vh - 330px);
+  overflow: auto;
+}
+
+.city {
+  border-bottom: 1px solid #bcbcbc;
+  display: block;
+  padding: 10px 0;
+
+  &:nth-child(2) {
+    background-color: #f4f4f4;
+    border-bottom: 3px solid #bcbcbc;
+  }
+
+  &:nth-child(3) {
+    background-color: #cedaff;
+    border-bottom: 3px solid #376aff;
+  }
+
+  span {
+    padding-left: 30px;
+  }
+}
+
+.add-btn {
+  background-color: #376aff;
+  color: #fff;
+  border-radius: 4px;
+  display: block;
+  max-width: 200px;
+  padding: 8px;
+  margin: 10px auto;
+  text-align: center;
+}
