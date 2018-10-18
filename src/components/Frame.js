@@ -16,6 +16,7 @@ export default class extends Component {
 
     return `
       <div id="${id}" class="${id}" >
+        <div class="container"></div>
       </div>
     `;
   }
