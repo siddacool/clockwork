@@ -2,7 +2,28 @@ import * as Sortable from 'sortablejs';
 import { Component } from 'domr-framework';
 import City from './City';
 import Clock from './Clock';
-import { saveCityData, getCityDataAll, removeCityData, clearCityData } from '../utils/db-manipulation';
+import { getCityDataAll, removeCityData, updateOrderNo } from '../utils/db-manipulation';
+
+function updateClock() {
+  getCityDataAll()
+    .then((data) => {
+      const timezoneBase = data[0].timezone;
+      let timezoneAlt = null;
+
+      if (data[1]) {
+        timezoneAlt = data[1].timezone;
+      }
+
+      const oldClock = document.getElementById('clock');
+      const clock = new Clock({ timezoneBase, timezoneAlt });
+      clock
+        .Replace(oldClock);
+    })
+    .catch((err) => {
+      console.log(err);
+      location.href = '#/add';
+    });
+}
 
 export default class extends Component {
   constructor(props) {
@@ -38,6 +59,7 @@ export default class extends Component {
         removeCityData(parent.getAttribute('data-city-id'))
           .then(() => {
             grandParent.removeChild(parent);
+            location.reload();
           })
           .catch((err) => {
             console.log(err);
@@ -47,13 +69,23 @@ export default class extends Component {
 
     const sortable = Sortable.create(el, {
       onUpdate: () => {
-        clearCityData()
-          .then(() => {
-            
-          })
-          .catch((clrerr) => {
-            console.log(clrerr);
-          });
+        const ul = thisSelf.querySelector('ul');
+        const cities = ul.querySelectorAll('li');
+
+        cities.forEach((city, i) => {
+          const cityId = city.getAttribute('data-city-id');
+          const name = city.getAttribute('data-name');
+
+          updateOrderNo(cityId, i + 1)
+            .then(() => {
+              console.log('updated');
+              location.reload();
+            })
+            .catch((err) => {
+              console.log(err);
+              console.log(name);
+            });
+        });
       },
     });
   }

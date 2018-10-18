@@ -36,9 +36,9 @@ export default class extends Component {
   }
 
   Markup() {
-    const { id } = this.state;
+    const { id, height } = this.state;
     return `
-      <div id="${id}" class="clock">
+      <div id="${id}" style="height:${height}px;"class="clock">
       </div>
     `;
   }

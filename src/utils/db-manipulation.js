@@ -1,3 +1,4 @@
+import Dexie from 'dexie';
 import db from './indexed-storage';
 
 function saveCityData(city_id, name, country, country_name, timezone) {
@@ -11,6 +12,7 @@ function saveCityData(city_id, name, country, country_name, timezone) {
       country_name,
       timezone,
       date,
+      order_no: date,
     })
       .then((id) => {
         return db.cities.get(id);
@@ -27,7 +29,7 @@ function saveCityData(city_id, name, country, country_name, timezone) {
 
 function getCityDataAll() {
   const promiseObj = new Promise((resolve, reject) => {
-    db.cities.orderBy('date').toArray((data) => {
+    db.cities.orderBy('order_no').toArray((data) => {
       if (data && data.length) {
         resolve(data);
       } else {
@@ -72,7 +74,20 @@ function saveBulkCityData(drops) {
       .then(() => {
         resolve();
       })
-      .catch((err) => {
+      .catch(Dexie.BulkError, (err) => {
+        reject(err.stack || err);
+      });
+  });
+  return promiseObj;
+}
+
+function updateOrderNo(city_id, orderNo) {
+  const promiseObj = new Promise((resolve, reject) => {
+    db.cities.update(city_id, { order_no: orderNo })
+      .then(() => {
+        resolve();
+      })
+      .catch(Dexie.BulkError, (err) => {
         reject(err.stack || err);
       });
   });
@@ -85,4 +100,5 @@ export {
   removeCityData,
   clearCityData,
   saveBulkCityData,
+  updateOrderNo,
 };
