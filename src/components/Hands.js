@@ -48,6 +48,28 @@ export default function (props) {
       .attr('transform', d => `rotate(${d.scale(d.value)})`);
   }
 
+  function updateCities() {
+    const citiesList = document.getElementById('cities-list');
+
+    if (citiesList) {
+      const cities = citiesList.querySelectorAll('.city');
+
+      cities.forEach((c) => {
+        const dataTimezone = c.getAttribute('data-timezone');
+        const thisMoment = getTime(dataTimezone);
+
+        if (c.querySelector('.time--12')) {
+          const t12 = c.querySelector('.time--12');
+          const tday = c.querySelector('.time--day');
+          const t24 = c.querySelector('.time--24');
+          t12.innerText = thisMoment.format('h:mm a');
+          tday.innerText = thisMoment.format('dddd MMM, DD');
+          t24.innerText = `${thisMoment.format('HH:mm')} GMT ${dataTimezone}`;
+        }
+      });
+    }
+  }
+
   function updateData() {
     const thisTimezone = getTimezoneBase();
     const thisMoment = getTime(thisTimezone);
@@ -78,5 +100,6 @@ export default function (props) {
   setInterval(() => {
     updateData();
     moveHands();
+    updateCities();
   }, 1000);
 }

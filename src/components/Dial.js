@@ -10,7 +10,7 @@ export default function (props) {
   return base
     .append('g')
     .append('circle')
-    .attr('class', className)
+    .attr('class', `dial dial--${className}`)
     .attr('x', x)
     .attr('y', y)
     .attr('r', radius);

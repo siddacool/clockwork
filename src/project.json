@@ -1,9 +1,9 @@
 {
-  "name": "skeleton-app-webpack4",
-  "title": "App Webpack4",
-  "description": "skeleton for webpack4 app",
+  "name": "Clockwork",
+  "title": "Clockwork",
+  "description": "Multitimezone clock sync",
   "themeColor": "#ffffff",
   "backgroundColor": "#ffffff",
-  "isPwa": false,
+  "isPwa": true,
   "indexedDbCookie": "clockwork-add-city-data-2"
 }

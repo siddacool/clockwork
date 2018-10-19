@@ -1,0 +1,109 @@
+.clock-container {
+  background-color: $app-bg;
+
+  .clock {
+    display: flex;
+    justify-content: center;
+  }
+
+  .canvas {
+    font-family: $base-font;
+    stroke: $app-black;
+  }
+
+  .second-hand {
+    stroke: #f6ff7c;
+    stroke-width: 2;
+  }
+
+  .minute-hand {
+    stroke-linecap: round;
+    stroke-width: 3;
+  }
+
+  .hour-hand {
+    stroke-linecap: round;
+    stroke-width: 6;
+  }
+
+  .hands-cover {
+    fill: $app-white;
+    stroke-width: 3;
+  }
+
+  .second-tick {
+    opacity: .8;
+    stroke: $app-white;
+    stroke-width: 1;
+  }
+
+  .hour-tick {
+    stroke-width: 3; //same as the miute hand
+  }
+
+  .second-label {
+    font-size: 12px;
+  }
+
+  .hour-label {
+    fill: $app-white;
+    font-size: 13px;
+    stroke: none;
+  }
+
+  .hour24-label {
+    fill: $app-white;
+    font-size: 10px;
+    stroke: none;
+  }
+
+  .hour-alt-tick {
+    stroke-width: 3;
+  }
+
+  .second-alt-tick {
+    stroke: $app-white;
+  }
+
+  .hour-alt-label {
+    fill: $app-white;
+    font-size: 14px;
+    stroke: none;
+  }
+
+  .minute-alt-label {
+    fill: $app-white;
+    font-size: 10px;
+    stroke: none;
+  }
+
+  .cities {
+    height: calc(100vh - 330px);
+    overflow: auto;
+  }
+
+  .city {
+    &:nth-child(1) {
+      background-color: $app-secondary;
+      color: #fff;
+    };
+
+    &:nth-child(2) {
+      background-color: $app-primary;
+      color: #fff;
+    }
+  };
+
+  .add-btn {
+    display: block;
+    max-width: 100px;
+    padding: 8px;
+    margin: 10px auto;
+    text-align: center;
+
+    img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+}

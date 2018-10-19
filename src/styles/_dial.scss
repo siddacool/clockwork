@@ -1,0 +1,13 @@
+.dial {
+  &--inner {
+    fill: $app-secondary;
+    stroke: $app-secondary;
+    stroke-width: 1;
+  }
+
+  &--outer {
+    fill: none;
+    stroke: $app-primary;
+    stroke-width: 60;
+  }
+}

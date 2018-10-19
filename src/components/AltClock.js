@@ -20,7 +20,7 @@ export default function (props) {
   const outerDial = Dial({
     base: baseClock,
     radius: clockRadius + 55,
-    className: 'outer-dial',
+    className: 'outer',
   });
 
   const secondTick = Ticks({
