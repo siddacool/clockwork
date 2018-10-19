@@ -1,0 +1,215 @@
+body {
+  border: 0;
+  color: #000;
+  font-family: "Roboto", "segoe ui", Helvatica, arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  outline: none;
+  padding: 0;
+  min-width: 100%;
+  overflow: hidden; }
+
+* {
+  box-sizing: border-box; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+button {
+  background: none;
+  border: 0;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  text-decoration: none; }
+
+a {
+  color: inherit;
+  margin: 0;
+  text-decoration: none; }
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  text-decoration: none; }
+
+:focus {
+  outline: 0; }
+
+a svg,
+button svg,
+label svg {
+  pointer-events: none; }
+
+.icon {
+  fill: #000;
+  height: 1.875rem;
+  width: 1.875rem; }
+
+.svg-holder {
+  display: none; }
+
+.wrapper {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh; }
+  @media only screen and (min-width: 1025px) {
+    .wrapper .container {
+      margin: 0 auto;
+      max-width: 600px; } }
+
+.btn {
+  background-color: #ff276b;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: #b5d2ff;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: .4px;
+  padding: 8px 10px; }
+
+.dial--inner {
+  fill: #6554c0;
+  stroke: #6554c0;
+  stroke-width: 1; }
+
+.dial--outer {
+  fill: none;
+  stroke: #5243aa;
+  stroke-width: 60; }
+
+.list {
+  background-color: #fff;
+  display: -webkit-flex;
+  display: flex;
+  font-family: "Barlow", sans-serif;
+  margin-bottom: 7px;
+  position: relative; }
+  .list .delete {
+    -webkit-align-items: center;
+            align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    height: 2rem;
+    -webkit-justify-content: center;
+            justify-content: center;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 1.8rem;
+    cursor: pointer; }
+    .list .delete .icon {
+      cursor: pointer;
+      display: block;
+      fill: #000;
+      height: 24px;
+      opacity: .5;
+      width: 24px; }
+  .list__half {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex: 1;
+            flex: 1;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    padding: .6rem;
+    padding-left: 27px; }
+  .list .place--city {
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: capitalize; }
+  .list .place--country-name {
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize; }
+  .list .time--12 {
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase; }
+  .list .time--day {
+    font-size: 14px;
+    font-weight: 500;
+    padding-bottom: 4px; }
+  .list .time--24 {
+    font-size: 14px;
+    text-transform: capitalize; }
+
+.clock-container {
+  background-color: #f5f5f5; }
+  .clock-container .clock {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+            justify-content: center; }
+  .clock-container .canvas {
+    font-family: "Roboto", "segoe ui", Helvatica, arial, sans-serif;
+    stroke: #000; }
+  .clock-container .second-hand {
+    stroke: #f6ff7c;
+    stroke-width: 2; }
+  .clock-container .minute-hand {
+    stroke-linecap: round;
+    stroke-width: 3; }
+  .clock-container .hour-hand {
+    stroke-linecap: round;
+    stroke-width: 6; }
+  .clock-container .hands-cover {
+    fill: #fff;
+    stroke-width: 3; }
+  .clock-container .second-tick {
+    opacity: .8;
+    stroke: #fff;
+    stroke-width: 1; }
+  .clock-container .hour-tick {
+    stroke-width: 3; }
+  .clock-container .second-label {
+    font-size: 12px; }
+  .clock-container .hour-label {
+    fill: #fff;
+    font-size: 13px;
+    stroke: none; }
+  .clock-container .hour24-label {
+    fill: #fff;
+    font-size: 10px;
+    stroke: none; }
+  .clock-container .hour-alt-tick {
+    stroke-width: 3; }
+  .clock-container .second-alt-tick {
+    stroke: #fff; }
+  .clock-container .hour-alt-label {
+    fill: #fff;
+    font-size: 14px;
+    stroke: none; }
+  .clock-container .minute-alt-label {
+    fill: #fff;
+    font-size: 10px;
+    stroke: none; }
+  .clock-container .cities {
+    height: calc(100vh - 330px);
+    overflow: auto; }
+  .clock-container .city:nth-child(1) {
+    background-color: #6554c0;
+    color: #fff; }
+  .clock-container .city:nth-child(2) {
+    background-color: #5243aa;
+    color: #fff; }
+  .clock-container .add-btn {
+    display: block;
+    max-width: 100px;
+    padding: 8px;
+    margin: 10px auto;
+    text-align: center; }
+    .clock-container .add-btn img {
+      height: 50px;
+      width: 50px; }
+
