@@ -1,5 +1,5 @@
 import { Component } from 'domr-framework';
-import { saveCityData } from '../utils/db-manipulation';
+import { saveCityData } from '../utils/repository';
 
 export default class extends Component {
   constructor() {

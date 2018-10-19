@@ -1,5 +1,5 @@
 import { Component } from 'domr-framework';
-import { getCityDataAll } from '../utils/db-manipulation';
+import { getCityDataAll } from '../utils/repository';
 import Clock from './Clock';
 import Cities from './Cities';
 

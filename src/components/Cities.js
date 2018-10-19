@@ -1,23 +1,103 @@
 import * as Sortable from 'sortablejs';
 import { Component } from 'domr-framework';
+import { select, range } from 'd3';
 import City from './City';
-import Clock from './Clock';
-import { getCityDataAll, removeCityData, updateOrderNo } from '../utils/db-manipulation';
+import scales from './scales';
+import {
+  getCityDataAll,
+  removeCityData,
+  updateOrderNo,
+  saveTimezoneBase,
+} from '../utils/repository';
+import calculateTimezoneGap from '../utils/calculate-timezone-gap';
+
+function clockAltShow() {
+  const base = select('#alt-clock');
+
+  base
+    .attr('style', 'opacity: 1;');
+}
+
+function clockAltHide() {
+  const base = select('#alt-clock');
+
+  base
+    .attr('style', 'opacity: 0;');
+}
+
+function clearAltLabelsGroup(className) {
+  const base = select(`.group-${className}`);
+
+  base
+    .selectAll('*')
+    .remove();
+}
+
+function updateAltLabels(className, slantPoints, scaleName) {
+  clearAltLabelsGroup(className);
+  clockAltShow();
+  const radians = 0.0174532925;
+  const base = select(`.group-${className}`);
+  const radius = JSON.parse(base.attr('data-radius'));
+  const offset = JSON.parse(base.attr('data-offset'));
+  const thisScale = scales[scaleName];
+  let rangeArr = base.attr('data-rangeArr');
+  rangeArr = rangeArr.split(',');
+
+  base
+    .selectAll(`.${className}`)
+    .data(range(...rangeArr))
+    .enter()
+    .append('text')
+    .attr('class', `${className}`)
+    .attr('text-anchor', 'middle')
+    .attr('x', d => (radius * Math.sin(thisScale(d + slantPoints) * radians)))
+    .attr('y', d => (-radius * Math.cos(thisScale(d + slantPoints) * radians) + offset))
+    .text(d => d);
+}
+
+function updateAltHourLabels(slantPoints) {
+  updateAltLabels('hour-alt-label', slantPoints, 'hourScale');
+}
+
+function updateAltMinuteLabels(slantPoints) {
+  updateAltLabels('minute-alt-label', slantPoints, 'minuteScale');
+}
 
 function updateClock() {
   getCityDataAll()
     .then((data) => {
       const timezoneBase = data[0].timezone;
-      let timezoneAlt = null;
 
       if (data[1]) {
-        timezoneAlt = data[1].timezone;
+        const timezoneAlt = data[1].timezone;
+        const gap = calculateTimezoneGap(timezoneBase, timezoneAlt);
+        const hourAltTick = select('.group-hour-alt-tick')
+          .selectAll('.hour-alt-tick');
+        const secondAltTick = select('.group-second-alt-tick')
+          .selectAll('.second-alt-tick');
+        updateAltHourLabels(gap.h);
+        updateAltMinuteLabels(gap.m);
+
+        hourAltTick
+          .attr('stroke', (d) => {
+            let strokeColor = '#fff';
+
+            if (d % 3 === 0) {
+              strokeColor = 'red';
+            }
+
+            return strokeColor;
+          })
+          .attr('transform', d => `rotate(${scales.hourScale(d + gap.h)})`);
+
+        secondAltTick
+          .attr('transform', d => `rotate(${scales.secondScale(d - gap.m)})`);
+      } else {
+        clockAltHide();
       }
 
-      const oldClock = document.getElementById('clock');
-      const clock = new Clock({ timezoneBase, timezoneAlt });
-      clock
-        .Replace(oldClock);
+      saveTimezoneBase(timezoneBase);
     })
     .catch((err) => {
       console.log(err);
@@ -59,7 +139,7 @@ export default class extends Component {
         removeCityData(parent.getAttribute('data-city-id'))
           .then(() => {
             grandParent.removeChild(parent);
-            location.reload();
+            updateClock();
           })
           .catch((err) => {
             console.log(err);
@@ -79,7 +159,7 @@ export default class extends Component {
           updateOrderNo(cityId, i + 1)
             .then(() => {
               console.log('updated');
-              location.reload();
+              updateClock();
             })
             .catch((err) => {
               console.log(err);

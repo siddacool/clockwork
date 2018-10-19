@@ -94,6 +94,23 @@ function updateOrderNo(city_id, orderNo) {
   return promiseObj;
 }
 
+function saveSessionStorage(key, value) {
+  sessionStorage.setItem(key, JSON.stringify(value));
+}
+
+function getSessionStorage(key) {
+  return JSON.parse(sessionStorage.getItem(key));
+}
+
+function saveTimezoneBase(value) {
+  saveSessionStorage('timezone-base-value', value);
+}
+
+function getTimezoneBase() {
+  return getSessionStorage('timezone-base-value');
+}
+
+
 export {
   saveCityData,
   getCityDataAll,
@@ -101,4 +118,6 @@ export {
   clearCityData,
   saveBulkCityData,
   updateOrderNo,
+  saveTimezoneBase,
+  getTimezoneBase,
 };
