@@ -4,5 +4,6 @@
   "description": "skeleton for webpack4 app",
   "themeColor": "#ffffff",
   "backgroundColor": "#ffffff",
-  "isPwa": false
+  "isPwa": false,
+  "indexedDbCookie": "clockwork-add-city-data-2"
 }

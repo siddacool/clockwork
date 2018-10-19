@@ -16,6 +16,11 @@ export default function (props) {
   const thisScale = scales[scaleName];
 
   return base
+    .append('g')
+    .attr('class', `group-${className}`)
+    .attr('data-radius', radius)
+    .attr('data-offset', offset)
+    .attr('data-rangeArr', `${rangeArr}`)
     .selectAll(`.${className}`)
     .data(range(...rangeArr))
     .enter()

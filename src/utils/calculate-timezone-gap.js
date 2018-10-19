@@ -7,7 +7,7 @@ function convertMinsToHrsMins(min) {
   const m = mins % 60;
 
   return {
-    h: realMin < 0 ? (h * (-1)) : (h + 1),
+    h: realMin <= 0 ? (h * (-1)) : Math.abs(h),
     m,
   };
 }

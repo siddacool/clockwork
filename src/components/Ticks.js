@@ -12,6 +12,13 @@ export default function (props) {
   } = props;
 
   return base
+    .append('g')
+    .attr('class', `group-${className}`)
+    .attr('data-x1', x1)
+    .attr('data-x2', x2)
+    .attr('data-y1', y1)
+    .attr('data-y2', y2)
+    .attr('data-rangeArr', `${rangeArr}`)
     .selectAll(`.${className}`)
     .data(range(...rangeArr))
     .enter()
