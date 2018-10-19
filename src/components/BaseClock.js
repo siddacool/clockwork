@@ -26,7 +26,7 @@ export default function (props) {
   const innerDial = Dial({
     base: baseClock,
     radius: clockRadius + 25,
-    className: 'inner-dial',
+    className: 'inner',
   });
 
   const secondTick = Ticks({
@@ -53,7 +53,7 @@ export default function (props) {
 
   hourTick
     .attr('stroke', (d) => {
-      let strokeColor = '#000';
+      let strokeColor = '#fff';
 
       if (d % 3 === 0) {
         strokeColor = 'red';

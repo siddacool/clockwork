@@ -10,6 +10,7 @@ import {
   saveTimezoneBase,
 } from '../utils/repository';
 import calculateTimezoneGap from '../utils/calculate-timezone-gap';
+import icon from '../images/icon.png';
 
 function clockAltShow() {
   const base = select('#alt-clock');
@@ -123,7 +124,9 @@ export default class extends Component {
     const { citiesArr } = this.props;
 
     thisSelf.innerHTML = `
-      <a href="#/add" class="add-btn">Add</a>
+      <a href="#/add" class="add-btn">
+        <img src="${icon}" alt="" />
+      </a>
       <ul>
         ${citiesArr.map(c => City(c)).join('')}
       </ul>
@@ -158,7 +161,6 @@ export default class extends Component {
 
           updateOrderNo(cityId, i + 1)
             .then(() => {
-              console.log('updated');
               updateClock();
             })
             .catch((err) => {

@@ -15,7 +15,7 @@ export default class extends Component {
     const { id } = this.state;
 
     return `
-      <div id="${id}" class="${id}" >
+      <div id="${id}" class="${id} container" >
         <div class="container"></div>
       </div>
     `;

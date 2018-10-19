@@ -56,6 +56,7 @@ export default class extends Component {
     const { timezoneBase, timezoneAlt } = this.props;
     const svg = select(`#${id}`)
       .append('svg')
+      .attr('class', 'canvas')
       .attr('width', width)
       .attr('height', height);
 
