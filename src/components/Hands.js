@@ -1,6 +1,7 @@
 import { select } from 'd3';
 import scales from './scales';
 import getTime from '../utils/get-time';
+import { saveTimezoneBase, getTimezoneBase } from '../utils/repository';
 
 const { hourScale, minuteScale, secondScale } = scales;
 
@@ -14,6 +15,8 @@ export default function (props) {
   const hourHandLength = 2 * radius / 3;
   const minuteHandLength = radius;
   const secondHandLength = radius - 12;
+
+  saveTimezoneBase(timezone);
 
   const handData = [
     {
@@ -46,7 +49,8 @@ export default function (props) {
   }
 
   function updateData() {
-    const thisMoment = getTime(timezone);
+    const thisTimezone = getTimezoneBase();
+    const thisMoment = getTime(thisTimezone);
     const getMinutes = JSON.parse(thisMoment.format('m'));
     const getSeconds = JSON.parse(thisMoment.format('s'));
     const getHours = JSON.parse(thisMoment.format('H'));

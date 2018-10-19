@@ -3,7 +3,12 @@ import { Component } from 'domr-framework';
 import { select, range } from 'd3';
 import City from './City';
 import scales from './scales';
-import { getCityDataAll, removeCityData, updateOrderNo } from '../utils/repository';
+import {
+  getCityDataAll,
+  removeCityData,
+  updateOrderNo,
+  saveTimezoneBase,
+} from '../utils/repository';
 import calculateTimezoneGap from '../utils/calculate-timezone-gap';
 
 function clockAltShow() {
@@ -91,6 +96,8 @@ function updateClock() {
       } else {
         clockAltHide();
       }
+
+      saveTimezoneBase(timezoneBase);
     })
     .catch((err) => {
       console.log(err);
