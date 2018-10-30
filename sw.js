@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.05d0b2e848a37271f7096a98175c5518.js"
+  "precache-manifest.7401da7ccc8b326a2978982475f58ca6.js"
 );
 
 workbox.skipWaiting();
@@ -28,3 +28,6 @@ workbox.clientsClaim();
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+workbox.routing.registerRoute(/https:\/\/fonts.googleapis.com\/css?family/, workbox.strategies.cacheFirst(), 'GET');
+workbox.routing.registerRoute(/https:\/\/sid-maps-api.firebaseapp.com\/mapdata/, workbox.strategies.staleWhileRevalidate(), 'GET');
