@@ -6,6 +6,16 @@ const workboxPlugin = () => new GenerateSW({
   swDest: 'sw.js',
   clientsClaim: true,
   skipWaiting: true,
+  runtimeCaching: [
+    {
+      urlPattern: new RegExp('https://fonts.googleapis.com/css?family'),
+      handler: 'cacheFirst',
+    },
+    {
+      urlPattern: new RegExp('https://sid-maps-api.firebaseapp.com/mapdata'),
+      handler: 'staleWhileRevalidate',
+    },
+  ],
 });
 
 const manifestPlugin = (name, title, description, themeColor, backgroundColor) => new WebpackPwaManifest({
